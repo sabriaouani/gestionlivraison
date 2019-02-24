@@ -1,0 +1,22 @@
+{{ include('hf/header_admin.html.twig') }}
+<div class="container">
+    <h3>View Chauffeur</h3>
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active">
+            Chauffeur Info
+        </a>
+        <p  class="list-group-item list-group-item-action">{{ chauffeur.cin }}</p>
+        <p  class="list-group-item list-group-item-action">{{ chauffeur.nomprenom }}</p>
+        <p  class="list-group-item list-group-item-action">{{ chauffeur.tel }}</p>
+        <p  class="list-group-item list-group-item-action">{% if chauffeur.datenes %}{{ chauffeur.datenes|date('Y-m-d') }}{% endif %}</p>
+        {% for g in gests %}
+        <p  class="list-group-item list-group-item-action">{{ g.nomprenom }}</p>
+        {% endfor %}
+
+        <a href="{{ path('chauffeur_index') }}" class="btn btn-primary ">Back</a>
+    </div>
+
+</div>
+
+
+{{ include('hf/footer.html.twig') }}

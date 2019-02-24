@@ -1,0 +1,54 @@
+{{ include('hf/header_admin.html.twig') }}
+<link rel="stylesheet" href="{{ absolute_url(asset('css/style.css')) }}"></link>
+
+<br>
+
+
+<div class="container"  >
+    <div class="row" >
+        <div class="col-lg-3 col-sm-6" style="max-width: 20rem;  margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px;">
+
+            <div class="card hovercard">
+                <div class="cardheader">
+
+                </div>
+                <div class="avatar">
+                    <img alt="" src="{{ absolute_url(asset('css/zamil.jpg')) }}">
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <a target="_blank" href="#">{{ gestionnaire.nomprenom }}</a>
+                    </div>
+                        <div class="card-body">
+                        <h4 class="card-title">Cin:</h4>
+                        <p class="card-text">{{ gestionnaire.cin }}</p>
+
+                        <h4 class="card-title">email:</h4>
+                        <p class="card-text">{{ gestionnaire.email }}</p>
+                        <h4 class="card-title">Adress:</h4>
+                        <p class="card-text">{{ gestionnaire.adress }}</p>
+                        <h4 class="card-title">Ses chauffeurs:</h4>
+                            {% for c in chaufs %}
+                        <p class="card-text">{{ c.nomprenom }}</p>
+                            {% endfor %}
+
+                        </div>
+
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+{{ include('hf/footer.html.twig') }}

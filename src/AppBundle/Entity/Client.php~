@@ -1,0 +1,226 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToMany;
+
+/**
+ * Client
+ *
+ * @ORM\Table(name="client")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
+ */
+class Client
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adress", type="string", length=255)
+     */
+    private $adress;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tel", type="string", length=255)
+     */
+    private $tel;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="prix", type="integer")
+     */
+    private $prix;
+
+    /**
+     * Many features have one product. This is the owning side.
+     * @ManyToOne(targetEntity="AppBundle\Entity\Produit", inversedBy="IdClient")
+     * @JoinColumn(name="IdProduit", referencedColumnName="id")
+     */
+    private $IdProduit;
+
+    /**
+     * Many features have one product. This is the owning side.
+     * @ManyToOne(targetEntity="AppBundle\Entity\Mission", inversedBy="IdClient")
+     * @JoinColumn(name="IdMission", referencedColumnName="id")
+     */
+    private $IdMission;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Client
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set adress
+     *
+     * @param string $adress
+     *
+     * @return Client
+     */
+    public function setAdress($adress)
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Get adress
+     *
+     * @return string
+     */
+    public function getAdress()
+    {
+        return $this->adress;
+    }
+
+    /**
+     * Set tel
+     *
+     * @param string $tel
+     *
+     * @return Client
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * Get tel
+     *
+     * @return string
+     */
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+
+    /**
+     * Set idProduit
+     *
+     * @param \AppBundle\Entity\Produit $idProduit
+     *
+     * @return Client
+     */
+    public function setIdProduit(\AppBundle\Entity\Produit $idProduit = null)
+    {
+        $this->IdProduit = $idProduit;
+
+        return $this;
+    }
+
+    /**
+     * Get idProduit
+     *
+     * @return \AppBundle\Entity\Produit
+     */
+    public function getIdProduit()
+    {
+        return $this->IdProduit;
+    }
+
+    /**
+     * Set prix
+     *
+     * @param integer $prix
+     *
+     * @return Client
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * Get prix
+     *
+     * @return integer
+     */
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
+
+    /**
+     * Set idMission
+     *
+     * @param \AppBundle\Entity\Mission $idMission
+     *
+     * @return Client
+     */
+    public function setIdMission(\AppBundle\Entity\Mission $idMission = null)
+    {
+        $this->IdMission = $idMission;
+
+        return $this;
+    }
+
+    /**
+     * Get idMission
+     *
+     * @return \AppBundle\Entity\Mission
+     */
+    public function getIdMission()
+    {
+        return $this->IdMission;
+    }
+}

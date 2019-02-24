@@ -1,0 +1,16 @@
+{{ include('hf/header_gestionnaire.html.twig') }}
+
+<h1>Client edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Modifier" class="btn btn-dark"/>
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('mission_index') }}" class="btn btn-danger btn-sm">Back to the list</a>
+        </li>
+
+    </ul>
+{{ include('hf/footer.html.twig') }}

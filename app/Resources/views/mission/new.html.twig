@@ -1,0 +1,24 @@
+{{ include('hf/header_gestionnaire.html.twig') }}
+
+<h1>Mission creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.IdChauf) }}
+        {{ form_row(form.dateMis) }}
+<div class="col-sm-8 col-sm-offset-2" id="client" data-prototype="{{ form_widget(form.IdClient.vars.prototype)|e('html_attr') }}">
+    {% for row in form.IdClient %}
+        <div class="panel panel-warning">
+            <div class="panal-heading">
+               <strong> {{ row.vars.value.Nom }} </strong>
+            </div>
+            <div class="panel-body">
+                {{ form_row(row) }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+{{ form_end(form) }}
+
+{{ include('hf/footer.html.twig') }}

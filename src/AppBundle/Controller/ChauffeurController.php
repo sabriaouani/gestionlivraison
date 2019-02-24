@@ -1,0 +1,169 @@
+<?php
+
+namespace AppBundle\Controller;
+
+use AppBundle\Entity\chauffeur;
+use Doctrine\DBAL\Types\StringType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\HttpFoundation\Request;
+
+/**
+ * Chauffeur controller.
+ *
+ * @Route("chauffeur")
+ */
+class ChauffeurController extends Controller
+{
+    /**
+     * Lists all chauffeur entities.
+     *
+     * @Route("/", name="chauffeur_index")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $chauffeurs = $em->getRepository('AppBundle:chauffeur')->findAll();
+
+        $gestionnairess = $em->getRepository('AppBundle:Gestionnaire')->findAll();
+        return $this->render('chauffeur/index.html.twig', array(
+            'chauffeurs' => $chauffeurs,
+            'gestionnairess' => $gestionnairess,
+
+        ));
+    }
+    /**
+     * Creates a new chauffeur entity.
+     *
+     * @Route("/dashboard", name="dashboard")
+     * @Method({"GET", "POST"})
+     */
+    public function DashboardAction()
+    {
+
+
+        return $this->render('chauffeur/dashboard.html.twig'
+        );
+    }
+    /**
+     * Creates a new chauffeur entity.
+     *
+     * @Route("/new", name="chauffeur_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newAction(Request $request)
+    {
+        $chauffeur = new Chauffeur();
+        $form = $this->createForm('AppBundle\Form\ChauffeurType', $chauffeur);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($chauffeur);
+            $em->flush();
+
+            return $this->redirectToRoute('chauffeur_show', array('id' => $chauffeur->getId()));
+        }
+
+        return $this->render('chauffeur/new.html.twig', array(
+            'chauffeur' => $chauffeur,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Finds and displays a chauffeur entity.
+     *
+     * @Route("/{id}", name="chauffeur_show")
+     * @Method("GET")
+     */
+    public function showAction(Chauffeur $chauffeur)
+    {
+
+        $deleteForm = $this->createDeleteForm($chauffeur);
+        $em = $this->getDoctrine()->getManager();
+
+        $query = $em->createQuery(
+            'SELECT DISTINCT g.nomprenom
+    FROM AppBundle:chauffeur c
+    LEFT JOIN AppBundle:Gestionnaire g
+    WITH c.idGest = g.id
+    '
+        );
+
+        $gests = $query->execute();
+        return $this->render('chauffeur/show.html.twig', array(
+            'chauffeur' => $chauffeur,
+            'gests' => $gests,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing chauffeur entity.
+     *
+     * @Route("/{id}/edit", name="chauffeur_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editAction(Request $request, Chauffeur $chauffeur)
+    {
+        $deleteForm = $this->createDeleteForm($chauffeur);
+        $editForm = $this->createForm('AppBundle\Form\ChauffeurType', $chauffeur);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('chauffeur_index', array('id' => $chauffeur->getId()));
+        }
+
+        return $this->render(':chauffeur:edit.html.twig', array(
+            'chauffeur' => $chauffeur,
+            'form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+
+
+    }
+
+    /**
+     * Deletes a chauffeur entity.
+     *
+     * @Route("/delete/{id}", name="chauffeur_delete")
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('AppBundle:chauffeur')->find($id);
+        $em->remove($post);
+        $em->flush();
+        $this->addFlash('message','Chauffeur deleted');
+
+
+        return $this->redirectToRoute('chauffeur_index');
+
+    }
+
+    /**
+     * Creates a form to delete a chauffeur entity.
+     *
+     * @param Chauffeur $chauffeur The chauffeur entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Chauffeur $chauffeur)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('chauffeur_delete', array('id' => $chauffeur->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
+    }
+}

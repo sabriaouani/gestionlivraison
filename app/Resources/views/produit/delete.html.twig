@@ -1,0 +1,40 @@
+{{ include('hf/header_gestionnaire.html.twig') }}
+
+<h1>Produit</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ produit.id }}</td>
+            </tr>
+            <tr>
+                <th>Nomproduit</th>
+                <td>{{ produit.nomProduit }}</td>
+            </tr>
+            <tr>
+                <th>Typeproduit</th>
+                <td>{{ produit.typeProduit }}</td>
+            </tr>
+            <tr>
+                <th>Nbproduit</th>
+                <td>{{ produit.nbProduit }}</td>
+            </tr>
+        </tbody>
+    </table>
+{{ include('hf/footer.html.twig') }}
+
+    <ul>
+        <li>
+            <a href="{{ path('produit_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('produit_edit', { 'id': produit.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

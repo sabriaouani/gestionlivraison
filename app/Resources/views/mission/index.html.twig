@@ -1,0 +1,49 @@
+{{ include('hf/header_gestionnaire.html.twig') }}
+
+<h1>Missions list</h1>
+<a href="{{ path('mission_new') }}">Create a new mission</a>
+{% for m in missions %}
+
+<div class="jumbotron">
+   <p>id: <a href="{{ path('mission_show', { 'id': m.id }) }}">{{ m.id }}</a></p>
+   date livraison <p  class="form-control mb-2">{% if m.DateMis %}{{ m.DateMis|date('Y-m-d') }}{% endif %}</p>
+    <p>
+    <h5>Chauffeur : {{ m.idChauf }}</h5>
+    <ul><h3 style="color: blue">list client</h3>
+        <a href="{{ path('client_new') }}">Create a new client</a>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Nom </th>
+                <th>Adress</th>
+                <th>Numero telephone</th>
+                <th>prix</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in m.idClient %}            <tr>
+                <td> {{ c.nom }}</td>
+                <td> {{ c.adress }}</td>
+                <td> {{ c.tel }}</td>
+                <td> {{ c.prix}}</td>
+                <td>
+                    <a href="{{ path('client_edit', { 'id': c.id }) }}" class="btn btn-warning">Edit</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+  </ul>
+    <a href="{{ path('mission_edit',{'id':m.id})}}" class="btn btn-light">Edit</a>
+    <a href="{{ path('mission_delete',{'id':m.id})}}" class="btn btn-secondary">Delete</a>
+</div>
+
+{% endfor %}
+
+{{ include('hf/footer.html.twig') }}
