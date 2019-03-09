@@ -28,13 +28,13 @@ class Mission
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="DateMis", type="datetime")
+     * @ORM\Column(name="DateMis", type="date")
      */
     private $dateMis;
     /**
      * Many features have one product. This is the owning side.
      * @ManyToOne(targetEntity="AppBundle\Entity\chauffeur", inversedBy="IdMission")
-     * @JoinColumn(name="IdChauf", referencedColumnName="id")
+     * @JoinColumn(name="IdChauf", referencedColumnName="id",onDelete="CASCADE")
      */
     private $IdChauf;
 

@@ -1,5 +1,10 @@
 {{ include('hf/header_gestionnaire.html.twig') }}
-
+<style>
+    body {
+        background-image: url("{{ absolute_url(asset('Bundles/millenium3.jpg')) }}");
+        background-color: #cccccc;
+    }
+</style>
 <h1>Produit</h1>
 
     <table>
@@ -14,7 +19,7 @@
             </tr>
             <tr>
                 <th>Typeproduit</th>
-                <td>{{ produit.typeProduit }}</td>
+                <td>{{ produit.idType }}</td>
             </tr>
             <tr>
                 <th>Nbproduit</th>
@@ -24,17 +29,4 @@
     </table>
 {{ include('hf/footer.html.twig') }}
 
-    <ul>
-        <li>
-            <a href="{{ path('produit_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('produit_edit', { 'id': produit.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-{% endblock %}
+

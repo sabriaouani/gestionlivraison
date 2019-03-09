@@ -1,16 +1,24 @@
 {{ include('hf/header_gestionnaire.html.twig') }}
-
-<h1>Mission edit</h1>
+<style>
+    body {
+        background-image: url("{{ absolute_url(asset('Bundles/bureau-twenty-1920x1027.jpg')) }}");
+        background-color: #cccccc;
+    }
+</style>
+<div class="container">
+<h1>Modifier mission</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('mission_index') }}">Back to the list</a>
-        </li>
 
-    </ul>
+            <a href="{{ path('mission_index') }}" class="btn btn-dark">Retour</a>
+</div>
 {{ include('hf/footer.html.twig') }}
+
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+</script>

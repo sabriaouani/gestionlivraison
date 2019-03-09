@@ -1,15 +1,17 @@
 {{ include('hf/header_gestionnaire.html.twig') }}
+<style>
+    body {
+        background-image: url("{{ absolute_url(asset('Bundles/rrrrrrrrrrrrrr.jpg')) }}");
+        background-color: #cccccc;
+    }
+</style>
 
-<div class="container">
-    <form method="POST">
-        <input type="text" name="recherche">
-        <input type="submit" name="submit" value="recherche">
-    </form>
+
     <div class="row">
         <a href="{{ path('produit_new') }}" class="btn btn-primary" style="position: absolute; right: 10px;">Ajouter Produit</a>
     </div>
     <br>
-    <h3>List des Gestionnaire</h3>
+    <h3>List des Produits</h3>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -25,13 +27,13 @@
 
             <tr>
                 <td><a href="{{ path('produit_show', { 'id': produit.id }) }}">{{ produit.id }}</a></td>
-                <td>{{ produit.nomProduit }}</td>
-                <td> {% for p in produit.IdType %}
-                   {{ p.type }}
-                {% endfor %} </td>
+                <td><strong>{{ produit.nomProduit }}</strong></td>
                 <td>
-                    <a href="{{ path('produit_edit',{'id':produit.id})}}" class="btn btn-light">Edit</a>
-                    <a href="{{ path('produit_delete',{'id':produit.id})}}" class="btn btn-danger btn-sm">Delete</a>
+                   <strong>{{ produit.idType }}</strong>
+                </td>
+                <td>
+                    <a href="{{ path('produit_edit',{'id':produit.id})}}" class="btn btn-light">Modifier</a>
+                    <a href="{{ path('produit_delete',{'id':produit.id})}}" class="btn btn-danger btn-sm">Supprimer</a>
                 </td>
 
             </tr>
@@ -41,6 +43,7 @@
         </tbody>
     </table>
 </div>
+
 
 {{ include('hf/footer.html.twig') }}
 

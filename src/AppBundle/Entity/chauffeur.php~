@@ -45,12 +45,6 @@ class chauffeur
      */
     private $tel;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="rate", type="string", length=255)
-     */
-    private $rate;
 
     /**
      * @var \DateTime
@@ -180,29 +174,7 @@ class chauffeur
         return $this->rate;
     }
 
-    /**
-     * Set datenes
-     *
-     * @param \DateTime $datenes
-     *
-     * @return chauffeur
-     */
-    public function setDatenes($datenes)
-    {
-        $this->datenes = $datenes;
 
-        return $this;
-    }
-
-    /**
-     * Get datenes
-     *
-     * @return \DateTime
-     */
-    public function getDatenes()
-    {
-        return $this->datenes;
-    }
 
 
 
@@ -228,5 +200,79 @@ class chauffeur
     public function getIdGest()
     {
         return $this->idGest;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->IdMission = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add idMission
+     *
+     * @param \AppBundle\Entity\Mission $idMission
+     *
+     * @return chauffeur
+     */
+    public function addIdMission(\AppBundle\Entity\Mission $idMission)
+    {
+        $this->IdMission[] = $idMission;
+
+        return $this;
+    }
+
+    /**
+     * Remove idMission
+     *
+     * @param \AppBundle\Entity\Mission $idMission
+     */
+    public function removeIdMission(\AppBundle\Entity\Mission $idMission)
+    {
+        $this->IdMission->removeElement($idMission);
+    }
+
+    /**
+     * Get idMission
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdMission()
+    {
+        return $this->IdMission;
+    }
+
+    public function __toString()
+    {
+        return $this->nomprenom;
+    }
+
+
+
+
+
+    /**
+     * Set datedeb
+     *
+     * @param \DateTime $datedeb
+     *
+     * @return chauffeur
+     */
+    public function setDatedeb($datedeb)
+    {
+        $this->datedeb = $datedeb;
+
+        return $this;
+    }
+
+    /**
+     * Get datedeb
+     *
+     * @return \DateTime
+     */
+    public function getDatedeb()
+    {
+        return $this->datedeb;
     }
 }

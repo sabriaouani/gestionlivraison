@@ -1,4 +1,11 @@
 {{ include('hf/header_admin.html.twig') }}
+<style>
+    body {
+        background-image: url("{{ absolute_url(asset('Bundles/bibliotheque1-1920x1027.jpg')) }}");
+        background-color: #cccccc;
+    }
+</style>
+<div class="container">
 
 <h1>Gestionnaire edit</h1>
 
@@ -7,6 +14,6 @@
 <input type="submit" value="Edit" class="btn btn-primary"/>
 
     {{ form_end(edit_form) }}
-
+</div>
 
 {{ include('hf/footer.html.twig') }}

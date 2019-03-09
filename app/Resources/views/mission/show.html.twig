@@ -1,32 +1,96 @@
 {{ include('hf/header_gestionnaire.html.twig') }}
+<style>
+    body {
+        background-image: url("{{ absolute_url(asset('Bundles/don-jones-1920x1027.jpg')) }}");
+        background-color: #cccccc;
+    }
+</style>
 
-<h1>Mission</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ mission.id }}</td>
-            </tr>
-            <tr>
-                <th>Datemis</th>
-                <td>{% if mission.dateMis %}{{ mission.dateMis|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+<br><br><br>
+<div class="col-md-9 container">
+    <div class="card">
+        <div class="card-body">
+            <h2>Mission Infos : </h2>
+            <hr>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6> id mission : </h6>
+                        </div>
+                        <div class="col-md-6">
+                            {{ mission.id}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6> Date mission : </h6>
+                        </div>
+                        <div class="col-md-6">
+                            {% if mission.dateMis %}{{ mission.dateMis|date('Y-m-d') }}{% endif %}
+                        </div>
+                    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('mission_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('mission_edit', { 'id': mission.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                </div>
+
+                {% for c in mission.idClient%}
+
+                <div class="col-md-6">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6> nom client : </h6>
+                        </div>
+                        <div class="col-md-6">
+                            {{ c.nom }}
+                        </div>
+                    </div>
+
+                </div>
+                    <div class="col-md-6">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6> adress client : </h6>
+                            </div>
+                            <div class="col-md-6">
+                                {{ c.adress }}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6> numero telephone : </h6>
+                            </div>
+                            <div class="col-md-6">
+                                {{ c.tel }}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6> prix : </h6>
+                            </div>
+                            <div class="col-md-6">
+                                {{ c.prix }}
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div></div></div>
+    <a href="{{ path('mission_index') }}" class="btn btn-primary ">Retour</a>
+</div>
+    <br><br>
+
+
 
 {{ include('hf/footer.html.twig') }}

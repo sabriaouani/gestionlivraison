@@ -45,12 +45,6 @@ class chauffeur
      */
     private $tel;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="rate", type="string", length=255)
-     */
-    private $rate;
 
     /**
      * @var \DateTime
@@ -180,29 +174,7 @@ class chauffeur
         return $this->rate;
     }
 
-    /**
-     * Set datenes
-     *
-     * @param \DateTime $datenes
-     *
-     * @return chauffeur
-     */
-    public function setDatenes($datenes)
-    {
-        $this->datenes = $datenes;
 
-        return $this;
-    }
-
-    /**
-     * Get datenes
-     *
-     * @return \DateTime
-     */
-    public function getDatenes()
-    {
-        return $this->datenes;
-    }
 
 
 
@@ -277,4 +249,54 @@ class chauffeur
     }
 
 
+
+
+
+    /**
+     * Set datedeb
+     *
+     * @param \DateTime $datedeb
+     *
+     * @return chauffeur
+     */
+    public function setDatedeb($datedeb)
+    {
+        $this->datedeb = $datedeb;
+
+        return $this;
+    }
+
+    /**
+     * Get datedeb
+     *
+     * @return \DateTime
+     */
+    public function getDatedeb()
+    {
+        return $this->datedeb;
+    }
+
+    /**
+     * Set datenes
+     *
+     * @param \DateTime $datenes
+     *
+     * @return chauffeur
+     */
+    public function setDatenes($datenes)
+    {
+        $this->datenes = $datenes;
+
+        return $this;
+    }
+
+    /**
+     * Get datenes
+     *
+     * @return \DateTime
+     */
+    public function getDatenes()
+    {
+        return $this->datenes;
+    }
 }

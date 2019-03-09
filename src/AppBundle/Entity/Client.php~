@@ -54,9 +54,12 @@ class Client
     private $prix;
 
     /**
-     * Many features have one product. This is the owning side.
-     * @ManyToOne(targetEntity="AppBundle\Entity\Produit", inversedBy="IdClient")
-     * @JoinColumn(name="IdProduit", referencedColumnName="id")
+     * Many Users have Many Groups.
+     * @ManyToMany(targetEntity="AppBundle\Entity\Produit")
+     * @JoinTable(name="pro_client",
+     *      joinColumns={@JoinColumn(name="id_client", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="id_produit", referencedColumnName="id")}
+     *      )
      */
     private $IdProduit;
 

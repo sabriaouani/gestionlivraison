@@ -44,11 +44,7 @@ class Produit
      */
     private $IdType;
 
-    /**
-     * One product has many features. This is the inverse side.
-     * @OneToMany(targetEntity="AppBundle\Entity\Client", mappedBy="IdProduit")
-     */
-    private $IdClient;
+
 
     /**
      * Get id
@@ -140,7 +136,7 @@ class Produit
      */
     public function __construct()
     {
-        $this->IdClient = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->IdType = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -176,4 +172,12 @@ class Produit
     {
         return $this->IdClient;
     }
+
+    public function __toString()
+    {
+        return $this->nomProduit;
+    }
+
+ 
+
 }

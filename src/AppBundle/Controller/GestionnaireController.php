@@ -69,19 +69,10 @@ class GestionnaireController extends Controller
     {
         $deleteForm = $this->createDeleteForm($gestionnaire);
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            'SELECT c.nomprenom
-    FROM AppBundle:chauffeur c
-    LEFT JOIN AppBundle:Gestionnaire g
-    WHERE c.idGest = g.id
-    '
-        );
 
-        $chaufs = $query->execute();
 
         return $this->render('gestionnaire/show.html.twig', array(
             'gestionnaire' => $gestionnaire,
-            'chaufs' => $chaufs,
             'delete_form' => $deleteForm->createView(),
         ));
     }

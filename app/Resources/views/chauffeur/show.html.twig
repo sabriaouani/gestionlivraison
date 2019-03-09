@@ -1,4 +1,10 @@
 {{ include('hf/header_admin.html.twig') }}
+<style>
+    body {
+        background-image: url("{{ absolute_url(asset('Bundles/panarea-1920x1027.jpg')) }}");
+        background-color: #cccccc;
+    }
+</style>
 <div class="container">
     <h3>View Chauffeur</h3>
     <div class="list-group">
@@ -12,8 +18,8 @@
         {% for g in gests %}
         <p  class="list-group-item list-group-item-action">{{ g.nomprenom }}</p>
         {% endfor %}
-
-        <a href="{{ path('chauffeur_index') }}" class="btn btn-primary ">Back</a>
+        <div style="text-align:center;">
+            <a href="{{ path('chauffeur_index') }}" class="btn btn-primary " >Back</a></div>
     </div>
 
 </div>

@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 
 class GestionnaireType extends AbstractType
@@ -15,10 +16,24 @@ class GestionnaireType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('cin',TextType::Class, array('attr' => array('class' => 'form-control')))
-            ->add('nomprenom',TextType::Class, array('attr' => array('class' => 'form-control')))
-            ->add('email',TextType::Class, array('attr' => array('class' => 'form-control')))
-            ->add('adress',TextType::Class, array('attr' => array('class' => 'form-control')));
+        $builder->add('cin',TextType::Class,array(
+            'label' => 'Cin:'), array('attr' => array('class' => 'form-control')),
+            array('pattern' => '/^[1-9]*$/i'),
+            array('invalid' => 'il doit etre entier de 8 chiffre'),
+            array('required' => true, 'min_length' => 1, 'max_length' => 8))
+            ->add('nomprenom',TextType::Class,array(
+                'label' => 'Nom et Prenom:'), array('attr' => array('class' => 'form-control')),
+                array('pattern' => '/^[A-z0-9]*$/i'),
+                array('invalid' => 'ne contien pas chiffre'),
+                array('required' => true, 'min_length' => 1, 'max_length' => 8))
+            ->add('email',EmailType::Class,array(
+                'label' => 'Email:'), array('attr' => array('class' => 'form-control')))
+            ->add('adress',TextType::Class,array(
+                'label' => 'Adress:'), array('attr' => array('class' => 'form-control')),
+                array('pattern' => '/^[A-z]*$/i'),
+                array('invalid' => 'il doit etre une chaine de caractere'),
+                array('required' => true, 'min_length' => 1, 'max_length' => 50)
+);
     }/**
      * {@inheritdoc}
      */

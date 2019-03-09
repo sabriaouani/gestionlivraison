@@ -1,11 +1,17 @@
 {{ include('hf/header_admin.html.twig') }}
-
+<style>
+    body {
+        background-image: url("{{ absolute_url(asset('Bundles/don-jones-1920x1027.jpg')) }}");
+        background-color: #cccccc;
+    }
+</style>
+<div class="container">
 <h1>Chauffeur creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <input type="submit" value="Ajouter" class="btn btn-dark" />
     {{ form_end(form) }}
-<a href="{{ path('chauffeur_index') }}" class="btn btn-primary ">Back</a>
-
+<a href="{{ path('chauffeur_index') }}" class="btn btn-primary ">Retour</a>
+</div>
 {{ include('hf/footer.html.twig') }}

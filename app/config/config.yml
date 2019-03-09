@@ -79,3 +79,4 @@ fos_user:
     from_email:
         address:        sabriaouani@gmail.com
         sender_name:    admin
+# Nelmio CORS Configuration

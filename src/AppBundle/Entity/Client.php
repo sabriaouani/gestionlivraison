@@ -54,16 +54,19 @@ class Client
     private $prix;
 
     /**
-     * Many features have one product. This is the owning side.
-     * @ManyToOne(targetEntity="AppBundle\Entity\Produit", inversedBy="IdClient")
-     * @JoinColumn(name="IdProduit", referencedColumnName="id")
+     * Many Users have Many Groups.
+     * @ManyToMany(targetEntity="AppBundle\Entity\Produit")
+     * @JoinTable(name="pro_client",
+     *      joinColumns={@JoinColumn(name="id_client", referencedColumnName="id",onDelete="CASCADE")},
+     *      inverseJoinColumns={@JoinColumn(name="id_produit", referencedColumnName="id")}
+     *      )
      */
     private $IdProduit;
 
     /**
      * Many features have one product. This is the owning side.
      * @ManyToOne(targetEntity="AppBundle\Entity\Mission", inversedBy="IdClient")
-     * @JoinColumn(name="IdMission", referencedColumnName="id")
+     * @JoinColumn(name="IdMission", referencedColumnName="id",onDelete="CASCADE")
      */
     private $IdMission;
 
@@ -222,5 +225,36 @@ class Client
     public function getIdMission()
     {
         return $this->IdMission;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->IdProduit = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add idProduit
+     *
+     * @param \AppBundle\Entity\Produit $idProduit
+     *
+     * @return Client
+     */
+    public function addIdProduit(\AppBundle\Entity\Produit $idProduit)
+    {
+        $this->IdProduit[] = $idProduit;
+
+        return $this;
+    }
+
+    /**
+     * Remove idProduit
+     *
+     * @param \AppBundle\Entity\Produit $idProduit
+     */
+    public function removeIdProduit(\AppBundle\Entity\Produit $idProduit)
+    {
+        $this->IdProduit->removeElement($idProduit);
     }
 }

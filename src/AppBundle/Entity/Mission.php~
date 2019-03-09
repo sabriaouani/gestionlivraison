@@ -26,9 +26,9 @@ class Mission
     private $id;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="DateMis", type="datetime")
+     * @ORM\Column(name="DateMis", type="date")
      */
     private $dateMis;
     /**

@@ -1,5 +1,11 @@
 {{ include('hf/header_admin.html.twig') }}
-<div class="container">
+<style>
+    body {
+        background-image: url("{{ absolute_url(asset('Bundles/boss-bulle-deau-decor-1920x1027.jpg')) }}");
+        background-color: #cccccc;
+    }
+</style>
+<div class="col-sm-8 col-sm-offset-2">
     <h3>Chauffeur update</h3>
     <a href="{{ path('chauffeur_index') }}" class="btn btn-primary btn-sm">Back</a>
     {{ form_start(form) }}

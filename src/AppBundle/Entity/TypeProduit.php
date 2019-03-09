@@ -116,4 +116,10 @@ class TypeProduit
     {
         return $this->IdProduit;
     }
+
+    public function __toString()
+    {
+        return $this->type;
+    }
+
 }

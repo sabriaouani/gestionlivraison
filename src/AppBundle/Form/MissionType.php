@@ -7,7 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +18,7 @@ class MissionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateMis', DateTimeType::class,array('widget' => 'single_text'))
+        $builder->add('dateMis', DateType::class,array('widget' => 'single_text'))
             ->add('IdChauf',EntityType::Class, array(
                 'class'=>'AppBundle\Entity\chauffeur',
                 'choice_label'=>'nomprenom',
@@ -33,9 +33,10 @@ class MissionType extends AbstractType
                 'by_reference' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
-            ])->add('save', SubmitType::class,
+            ])->add('Enregister', SubmitType::class,
                 ['attr' => ['class' => 'btn btn-primary mb-2']]
                 );
+
         /*EntityType::Class, array('attr' => array('class' => 'form-control'),
         'class'=>'AppBundle\Entity\Client',
         'choice_label'=>function (Client $Client) {

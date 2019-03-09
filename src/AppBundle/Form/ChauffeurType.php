@@ -19,14 +19,26 @@ class ChauffeurType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('cin', NumberType::Class, array('attr' => array('class' => 'form-control')))
-            ->add('nomprenom', TextType::Class, array('attr' => array('class' => 'form-control')))
-            ->add('tel',NumberType::Class, array('attr' => array('class' => 'form-control'))
-            ,array('pattern' => '/^[A-z0-9]*$/i',
-                    'invalid' => 'champ doit etre entre 8 chiffre',
-                   )
+        $builder->add('cin', NumberType::Class, array('attr' => array('class' => 'form-control')),
+            array('pattern' => '/^[0-9]*$/i'),
+            array('required' => 'Please enter a username.'),
+                array('required' => true, 'min_length' => 1, 'max_length' => 8)
+
             )
-            ->add('datenes', DateType::Class, [ 'widget' => 'single_text'])
+            ->add('nomprenom', TextType::Class, array('attr' => array('class' => 'form-control')),
+                array('pattern' => '/^[A-z]*$/i',
+                    'invalid' => 'champ doit etre une chaine de caractere',
+                ),array(
+                    'label' => 'Nom et Prenom:'))
+            ->add('tel',NumberType::Class,array('attr' => array('class' => 'form-control'))
+            ,array('pattern' => '/^[0-9]*$/i',
+                    'invalid' => 'champ doit etre entre 8 chiffre',
+                   ),
+                array('required' => true, 'min_length' => 1, 'max_length' => 8),array(
+                    'label' => 'Télephone:')
+            )
+            ->add('datenes', DateType::Class, [ 'widget' => 'single_text'],array(
+        'label' => 'Date de naissance:'))
 
         ->add('idGest',EntityType::Class, array('attr' => array('class' => 'form-control'),
         'class'=>'AppBundle\Entity\Gestionnaire',
@@ -35,7 +47,8 @@ class ChauffeurType extends AbstractType
            'multiple' =>false,
 
 
-            ));
+            ),array(
+        'label' => 'Choisir son gestionnaire'));
 
 
     }/**

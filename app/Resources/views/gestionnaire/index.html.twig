@@ -1,10 +1,16 @@
 {{ include('hf/header_admin.html.twig') }}
+<style>
+    body {
+        background-image: url("{{ absolute_url(asset('Bundles/bibliotheque1-1920x1027.jpg')) }}");
+        background-color: #cccccc;
+    }
+</style>
 <div class="container">
     <div class="row">
         <a href="{{ path('gestionnaire_new') }}" class="btn btn-primary" style="position: absolute; right: 10px;">Ajouter gestionnaire</a>
     </div>
     <br>
-    <h3>List des Gestionnaire</h3>
+    <h3>List des Gestionnaires</h3>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -25,9 +31,9 @@
                 <td>{{ gestionnaire.email }}</td>
                 <td>{{ gestionnaire.adress }}</td>
                 <td>
-                    <a href="{{ path('gestionnaire_show',{'id':gestionnaire.id}) }}" class="btn btn-primary btn-sm">View</a>
-                    <a href="{{ path('gestionnaire_edit',{'id':gestionnaire.id})}}" class="btn btn-light">Edit</a>
-                    <a href="{{ path('gestionnaire_delete',{'id':gestionnaire.id})}}" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="{{ path('gestionnaire_show',{'id':gestionnaire.id}) }}" class="btn btn-primary btn-sm">Afficher</a>
+                    <a href="{{ path('gestionnaire_edit',{'id':gestionnaire.id})}}" class="btn btn-light">Modifier</a>
+                    <a href="{{ path('gestionnaire_delete',{'id':gestionnaire.id})}}" class="btn btn-danger btn-sm">Supprimer</a>
 
 
                 </td>

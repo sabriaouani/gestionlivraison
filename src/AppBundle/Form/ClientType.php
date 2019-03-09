@@ -20,15 +20,20 @@ class ClientType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom',TextType::Class)
+        $builder->add('nom',TextType::Class,array(
+            'label' => 'Nom Client:'))
             ->add('adress',TextType::Class)
             ->add('tel',TextType::Class)
             ->add('prix',NumberType::Class)
             ->add('IdProduit',EntityType::class,array(
+                'attr'=> array('class'=>'js-example-basic-multiple'),
                 'class'=>'AppBundle\Entity\Produit',
+
                 'choice_label'=>'NomProduit',
                 'expanded' =>false,
-                'multiple' =>false, ));
+                'multiple' =>true,
+
+            ));
 
 
 

@@ -1,4 +1,10 @@
 {{ include('hf/header_admin.html.twig') }}
+<style>
+    body {
+        background-image: url("{{ absolute_url(asset('Bundles/bureau-twenty-1920x1027.jpg')) }}");
+        background-color: #cccccc;
+    }
+</style>
 <div class="container">
     <div class="row">
         <a href="{{ path('chauffeur_new') }}" class="btn btn-primary" style="position: absolute; right: 10px;">Ajouter chauffeur</a>
@@ -12,7 +18,7 @@
                 <th>Cin</th>
                 <th>Nom et prenom</th>
                 <th>Numero telephone</th>
-                <th>Date du naissance</th>
+                <th>Date debut</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -25,9 +31,9 @@
                 <td>{{ chauffeur.tel }}</td>
                 <td>{% if chauffeur.datenes %}{{ chauffeur.datenes|date('Y-m-d') }}{% endif %}</td>
                 <td>
-                    <a href="{{ path('chauffeur_show',{'id':chauffeur.id}) }}" class="btn btn-primary btn-sm">View</a>
-                    <a href="{{ path('chauffeur_edit',{'id':chauffeur.id})}}" class="btn btn-light">Edit</a>
-                    <a href="{{ path('chauffeur_delete',{'id':chauffeur.id})}}" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="{{ path('chauffeur_show',{'id':chauffeur.id}) }}" class="btn btn-primary btn-sm">Afficher</a>
+                    <a href="{{ path('chauffeur_edit',{'id':chauffeur.id})}}" class="btn btn-light">Modifier</a>
+                    <a href="{{ path('chauffeur_delete',{'id':chauffeur.id})}}" class="btn btn-danger btn-sm">Supprimer</a>
                 </td>
             </tr>
         {% endfor %}

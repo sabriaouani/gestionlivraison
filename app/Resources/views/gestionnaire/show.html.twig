@@ -1,6 +1,11 @@
 {{ include('hf/header_admin.html.twig') }}
 <link rel="stylesheet" href="{{ absolute_url(asset('css/style.css')) }}"></link>
-
+<style>
+    body {
+        background-image: url("{{ absolute_url(asset('Bundles/bureau-twenty-1920x1027.jpg')) }}");
+        background-color: #cccccc;
+    }
+</style>
 <br>
 
 
@@ -30,7 +35,7 @@
                         <h4 class="card-title">Adress:</h4>
                         <p class="card-text">{{ gestionnaire.adress }}</p>
                         <h4 class="card-title">Ses chauffeurs:</h4>
-                            {% for c in chaufs %}
+                            {% for c in gestionnaire.idChauf%}
                         <p class="card-text">{{ c.nomprenom }}</p>
                             {% endfor %}
 

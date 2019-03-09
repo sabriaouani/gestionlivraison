@@ -43,7 +43,6 @@ class ProduitController extends Controller
         $products = $query->execute(); */
 
 
-
         return $this->render('produit/index.html.twig', array(
             'produits' => $produits,
            // 'products' => $products,
