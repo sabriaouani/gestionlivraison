@@ -251,31 +251,6 @@ class chauffeur
 
 
 
-
-    /**
-     * Set datedeb
-     *
-     * @param \DateTime $datedeb
-     *
-     * @return chauffeur
-     */
-    public function setDatedeb($datedeb)
-    {
-        $this->datedeb = $datedeb;
-
-        return $this;
-    }
-
-    /**
-     * Get datedeb
-     *
-     * @return \DateTime
-     */
-    public function getDatedeb()
-    {
-        return $this->datedeb;
-    }
-
     /**
      * Set datenes
      *

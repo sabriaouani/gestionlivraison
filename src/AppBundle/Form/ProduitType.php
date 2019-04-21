@@ -18,9 +18,8 @@ class ProduitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nomProduit',TextType::Class, array('attr' => array('class' => 'form-control')),array(
-            'label' => 'Nom de produit:'))
-            ->add('nbProduit',NumberType::Class, array('attr' => array('class' => 'form-control')),array(
-                'label' => 'Nombre de produit:'))
+            'label' => 'Nom de produit:','label_attr' => array('class' => 'badge badge-secondary')))
+
             ->add('idType',EntityType::Class, array('attr' => array('class' => 'form-control'),
                 'class'=>'AppBundle\Entity\TypeProduit',
                 'choice_label'=>'type',

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e517ea5cc5fd705c939e6f8013231f60",
+    "content-hash": "938ac22714ff48840441cdbd9e6790ec",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -61,6 +61,45 @@
                 "tls"
             ],
             "time": "2019-01-28T09:30:10+00:00"
+        },
+        {
+            "name": "cyberjaw/google-maps-bundle",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cyberJaw/GoogleMapsBundle.git",
+                "reference": "60e3e8d49f7e58811ccbb552da3686dd08e91f80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cyberJaw/GoogleMapsBundle/zipball/60e3e8d49f7e58811ccbb552da3686dd08e91f80",
+                "reference": "60e3e8d49f7e58811ccbb552da3686dd08e91f80",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "symfony/framework-bundle": "^2.7|^3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": null
+            },
+            "autoload": {
+                "psr-4": {
+                    "CyberJaw\\GoogleMapsBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Dimitrov",
+                    "email": "alexandar.dimitrov11@gmail.com"
+                }
+            ],
+            "time": "2017-07-03T11:28:37+00:00"
         },
         {
             "name": "doctrine/annotations",

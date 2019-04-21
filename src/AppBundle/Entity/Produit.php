@@ -35,7 +35,6 @@ class Produit
      *
      * @ORM\Column(name="nbProduit", type="integer")
      */
-    private $nbProduit;
 
     /**
      * Many features have one product. This is the owning side.

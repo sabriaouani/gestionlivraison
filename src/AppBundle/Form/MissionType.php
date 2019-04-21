@@ -18,7 +18,8 @@ class MissionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateMis', DateType::class,array('widget' => 'single_text'))
+        $builder->add('dateMis', DateType::class,array(
+            'label' => 'Date mission:','label_attr' => array('class' => 'badge badge-secondary')),array('widget' => 'single_text'))
             ->add('IdChauf',EntityType::Class, array(
                 'class'=>'AppBundle\Entity\chauffeur',
                 'choice_label'=>'nomprenom',

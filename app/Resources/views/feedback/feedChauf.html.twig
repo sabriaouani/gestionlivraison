@@ -1,0 +1,23 @@
+{{ include('hf/header_gestionnaire.html.twig') }}
+<br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+<div class="row">
+{% for chauf in chaufs %}
+
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        {% for name in chauf.id_ch %}
+        <div class="card-header">{{ name.nomprenom }}</div>
+        {% endfor %}
+        <div class="card-body">
+            <p class="card-text">Note:</p>
+
+            <h5 class="card-title">{{ chauf.msg }}</h5>
+        </div>
+    </div>
+    &emsp;    &emsp;
+{% endfor %}
+    </div>    &emsp;
+</div>
+
+{{ include('hf/footer.html.twig') }}

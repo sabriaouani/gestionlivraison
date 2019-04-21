@@ -67,6 +67,7 @@ class ProduitController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
+            $this->addFlash('message','Produit Ajouter');
 
             return $this->redirectToRoute('produit_index', array('id' => $produit->getId()));
         }
@@ -107,6 +108,7 @@ class ProduitController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('message','Produit Modifier');
 
             return $this->redirectToRoute('produit_index', array('id' => $produit->getId()));
         }
@@ -130,7 +132,7 @@ class ProduitController extends Controller
         $post = $em->getRepository('AppBundle:Produit')->find($id);
         $em->remove($post);
         $em->flush();
-        $this->addFlash('message','Product deleted');
+        $this->addFlash('message','Produit supprimer');
 
 
         return $this->redirectToRoute('produit_index');

@@ -6,14 +6,14 @@
     }
 </style>
 <div class="col-sm-8 col-sm-offset-2">
-    <h3>Chauffeur update</h3>
-    <a href="{{ path('chauffeur_index') }}" class="btn btn-primary btn-sm">Back</a>
+    <h3>Chauffeur modification</h3>
     {{ form_start(form) }}
 
     {{ form_widget(form) }}
-    <input type="submit" value="Edit" class="btn btn-primary btn-sm"/>
+    <input type="submit" value="Modifier" class="btn btn-primary btn-sm"/>
 
     {{ form_end(form) }}
+    <a href="{{ path('chauffeur_index') }}" class="btn btn-primary btn-sm">Retour</a>
 
 
 </div>

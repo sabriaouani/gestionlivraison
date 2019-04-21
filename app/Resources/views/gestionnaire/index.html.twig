@@ -7,20 +7,21 @@
 </style>
 <div class="container">
     <div class="row">
-        <a href="{{ path('gestionnaire_new') }}" class="btn btn-primary" style="position: absolute; right: 10px;">Ajouter gestionnaire</a>
+        <a href="{{ path('gestionnaire_new') }}" class="btn btn-primary" style="position: absolute; right: 10px;">Ajouter
+            gestionnaire</a>
     </div>
     <br>
-    <h3>List des Gestionnaires</h3>
-    <table class="table table-hover">
+    <h3>Liste des Gestionnaires</h3>
+    <table class="table table-dark">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Cin</th>
-                <th>Nom et prenom</th>
-                <th>Email</th>
-                <th>Adress</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Cin</th>
+            <th>Nom et prenom</th>
+            <th>Email</th>
+            <th>Adress</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for gestionnaire in gestionnaires %}
@@ -32,9 +33,31 @@
                 <td>{{ gestionnaire.adress }}</td>
                 <td>
                     <a href="{{ path('gestionnaire_show',{'id':gestionnaire.id}) }}" class="btn btn-primary btn-sm">Afficher</a>
-                    <a href="{{ path('gestionnaire_edit',{'id':gestionnaire.id})}}" class="btn btn-light">Modifier</a>
-                    <a href="{{ path('gestionnaire_delete',{'id':gestionnaire.id})}}" class="btn btn-danger btn-sm">Supprimer</a>
+                    <a href="{{ path('gestionnaire_edit',{'id':gestionnaire.id}) }}" class="btn btn-light">Modifier</a>
+                    <a class="btn btn-danger btn-sm"
+                       data-toggle="modal" data-target="#{{'id' ~gestionnaire.id}}">Supprimer</a>
+                    <div class="modal fade" id="{{'id' ~gestionnaire.id}}" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure ?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
 
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                        <button type="submit" class="btn btn-primary" > Save changes</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </td>
             </tr>
@@ -42,4 +65,5 @@
         </tbody>
     </table>
 </div>
+
 {{ include('hf/footer.html.twig') }}

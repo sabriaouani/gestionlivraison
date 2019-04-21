@@ -5,13 +5,14 @@
         background-color: #cccccc;
     }
 </style>
+
 <div class="container">
     <div class="row">
         <a href="{{ path('chauffeur_new') }}" class="btn btn-primary" style="position: absolute; right: 10px;">Ajouter chauffeur</a>
     </div>
     <br>
     <h3>List des chauffeurs</h3>
-    <table class="table table-hover">
+    <table class="table table-dark">
         <thead>
             <tr>
                 <th>Id</th>
@@ -33,7 +34,12 @@
                 <td>
                     <a href="{{ path('chauffeur_show',{'id':chauffeur.id}) }}" class="btn btn-primary btn-sm">Afficher</a>
                     <a href="{{ path('chauffeur_edit',{'id':chauffeur.id})}}" class="btn btn-light">Modifier</a>
-                    <a href="{{ path('chauffeur_delete',{'id':chauffeur.id})}}" class="btn btn-danger btn-sm">Supprimer</a>
+                    <a href="{{ path('chauffeur_delete',{'id':chauffeur.id})}}" class="btn btn-danger btn-sm"
+                     >Supprimer</a>
+                    <a href="{{ path('chauffeur_delete',{'id':chauffeur.id})}}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#{{'id' ~chauffeur.id}}">
+
+                    </a>
+
                 </td>
             </tr>
         {% endfor %}

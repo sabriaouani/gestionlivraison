@@ -12,70 +12,20 @@
 </style>
 
 <div class="container">
+<br>
 
-
-<a href="{{ path('mission_new') }}" class="btn btn-dark">Crée mission</a>
-{% set date = "" %}
-{% for m in missions %}
-    {% if date =="" %}
-        {% set date = m.dateMis|date %}
-        <div style="text-align: right"><h3 style="color: #0a0a0a">{{ date }}</h3></div>
-        <div class="jumbotron">
-            <p><a href="{{ path('mission_show', { 'id': m.id }) }}">{{ m.id }}</a></p>
-
-            <h5>Chauffeur : {{ m.idChauf }}</h5>
-            <ul><h3 style="color: blue">list client</h3>
-              <!--  <a href="{{ path('client_new') }}">Create a new client</a> -->
-
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Adress</th>
-                        <th>Numero telephone</th>
-                        <th>prix</th>
-                        <th>produit</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for c in m.idClient %}
-                        <tr>
-                            <td> {{ c.nom }}</td>
-                            <td> {{ c.adress }}</td>
-                            <td> {{ c.tel }}</td>
-                            <td> {{ c.prix }}</td>
-                            <td>{% for p in c.IdProduit %}
-                                    {{ p.nomProduit }}
-                                    {{ p.nbProduit }}<br>
-                                {% endfor %}</td>
-                            <td>
-                            <td>
-                                <a href="{{ path('client_edit', { 'id': c.id }) }}" class="btn btn-warning">Modifier</a>
-                            </td>
-
-                        </tr>
-                    {% endfor %}
-
-                    </tbody>
-                </table>
-
-
-            </ul>
-            <a href="{{ path('mission_edit',{'id':m.id}) }}" class="btn btn-light">Modifier</a>
-            <a href="{{ path('mission_delete',{'id':m.id}) }}" class="btn btn-secondary">Supprimer</a>
-        </div>
-    {% else %}
-        {% if date!= m.dateMis|date %}
+    <a href="{{ path('mission_new') }}" class="btn btn-primary">Crée mission</a>
+    {% set date = "" %}
+    {% for m in missions %}
+        {% if date =="" %}
             {% set date = m.dateMis|date %}
-            <div style="text-align: right "><h3 style="color: #0a0a0a">{{ date }}</h3></div>
-
+            <div style="text-align: right"><h1 class="badge badge-pill badge-light" style="color: #0a0a0a">{{ date }}</h1></div>
             <div class="jumbotron">
                 <p><a href="{{ path('mission_show', { 'id': m.id }) }}">{{ m.id }}</a></p>
 
                 <h5>Chauffeur : {{ m.idChauf }}</h5>
                 <ul><h3 style="color: blue">list client</h3>
-                  <!--  <a href="{{ path('client_new') }}">Create a new client</a> -->
+                    <!--  <a href="{{ path('client_new') }}">Create a new client</a> -->
 
                     <table class="table table-hover">
                         <thead>
@@ -92,14 +42,17 @@
                         {% for c in m.idClient %}
                             <tr>
                                 <td> {{ c.nom }}</td>
-                                <td> {{ c.adress }}</td>
+                                <td>{{ c.adresse }}</td>
                                 <td> {{ c.tel }}</td>
                                 <td> {{ c.prix }}</td>
                                 <td>{% for p in c.IdProduit %}
-                                        {{ p.nomProduit }} <br>
+                                        {{ p.nomProduit }}
                                     {% endfor %}</td>
                                 <td>
+                                <td>
                                     <a href="{{ path('client_edit', { 'id': c.id }) }}" class="btn btn-warning">Modifier</a>
+                                    <a href="{{ path('client_delete', { 'id': c.id }) }}" class="btn btn-warning">Supprimer</a>
+
                                 </td>
 
                             </tr>
@@ -114,55 +67,105 @@
                 <a href="{{ path('mission_delete',{'id':m.id}) }}" class="btn btn-secondary">Supprimer</a>
             </div>
         {% else %}
+            {% if date!= m.dateMis|date %}
+                {% set date = m.dateMis|date %}
+                <div style="text-align: right "><h1 class="badge badge-pill badge-light" style="color: #0a0a0a">{{ date }}</h1></div>
 
-            {% set date = m.dateMis|date %}
-            <div class="jumbotron">
-                <p><a href="{{ path('mission_show', { 'id': m.id }) }}">{{ m.id }}</a></p>
-                <p>
-                <h5>Chauffeur : {{ m.idChauf }}</h5>
-                <ul><h3 style="color: blue">list client</h3>
-                  <!--  <a href="{{ path('client_new') }}">Create a new client</a> -->
+                <div class="jumbotron">
+                    <p><a href="{{ path('mission_show', { 'id': m.id }) }}">{{ m.id }}</a></p>
 
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Adress</th>
-                            <th>Numero telephone</th>
-                            <th>prix</th>
-                            <th>produit</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for c in m.idClient %}
+                    <h5>Chauffeur : {{ m.idChauf }}</h5>
+                    <ul><h3 style="color: blue">list client</h3>
+                        <!--  <a href="{{ path('client_new') }}">Create a new client</a> -->
+
+                        <table class="table table-hover">
+                            <thead>
                             <tr>
-                                <td> {{ c.nom }}</td>
-                                <td> {{ c.adress }}</td>
-                                <td> {{ c.tel }}</td>
-                                <td> {{ c.prix }}</td>
-                                <td>{% for p in c.IdProduit %}
-                                 {{ p.nomProduit }} <br>
-                                {% endfor %}</td>
-                                <td>
-                                    <a href="{{ path('client_edit', { 'id': c.id }) }}" class="btn btn-warning">Modifier</a>
-                                </td>
-
+                                <th>Nom</th>
+                                <th>Adress</th>
+                                <th>Numero telephone</th>
+                                <th>prix</th>
+                                <th>produit</th>
+                                <th>Actions</th>
                             </tr>
-                        {% endfor %}
+                            </thead>
+                            <tbody>
+                            {% for c in m.idClient %}
+                                <tr>
+                                    <td> {{ c.nom }}</td>
+                                    <td> {{ c.adresse }}</td>
+                                    <td> {{ c.tel }}</td>
+                                    <td> {{ c.prix }}</td>
+                                    <td>{% for p in c.IdProduit %}
+                                            {{ p.nomProduit }} <br>
+                                        {% endfor %}</td>
+                                    <td>
+                                        <a href="{{ path('client_edit', { 'id': c.id }) }}" class="btn btn-warning">Modifier</a>
+                                        <a href="{{ path('client_delete', { 'id': c.id }) }}" class="btn btn-warning">Supprimer</a>
+                                    </td>
 
-                        </tbody>
-                    </table>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
 
 
-                </ul>
-                <a href="{{ path('mission_edit',{'id':m.id}) }}" class="btn btn-light">Modifier</a>
-                <a href="{{ path('mission_delete',{'id':m.id}) }}" class="btn btn-secondary">Supprimer</a>
-            </div>
+                    </ul>
+                    <a href="{{ path('mission_edit',{'id':m.id}) }}" class="btn btn-light">Modifier</a>
+                    <a href="{{ path('mission_delete',{'id':m.id}) }}" class="btn btn-secondary">Supprimer</a>
+                </div>
+            {% else %}
+
+                {% set date = m.dateMis|date %}
+                <div style="text-align: right "><h1 class="badge badge-pill badge-light" style="color: #0a0a0a">{{ date }}</h1></div>
+                <div class="jumbotron">
+                    <p><a href="{{ path('mission_show', { 'id': m.id }) }}">{{ m.id }}</a></p>
+                    <p>
+                    <h5>Chauffeur : {{ m.idChauf }}</h5>
+                    <ul><h3 style="color: blue">list client</h3>
+                        <!--  <a href="{{ path('client_new') }}">Create a new client</a> -->
+
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Adress</th>
+                                <th>Numero telephone</th>
+                                <th>prix</th>
+                                <th>produit</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for c in m.idClient %}
+                                <tr>
+                                    <td> {{ c.nom }}</td>
+                                    <td> {{ c.adresse }}</td>
+                                    <td> {{ c.tel }}</td>
+                                    <td> {{ c.prix }}</td>
+                                    <td>{% for p in c.IdProduit %}
+                                            {{ p.nomProduit }} <br>
+                                        {% endfor %}</td>
+                                    <td>
+                                        <a href="{{ path('client_edit', { 'id': c.id }) }}" class="btn btn-warning">Modifier</a>
+                                        <a href="{{ path('client_delete', { 'id': c.id }) }}" class="btn btn-warning">Supprimer</a>
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+
+                    </ul>
+                    <a href="{{ path('mission_edit',{'id':m.id}) }}" class="btn btn-light">Modifier</a>
+                    <a href="{{ path('mission_delete',{'id':m.id}) }}" class="btn btn-secondary">Supprimer</a>
+                </div>
+            {% endif %}
         {% endif %}
-    {% endif %}
 
 
-{% endfor %}
+    {% endfor %}
 </div>
 {{ include('hf/footer.html.twig') }}

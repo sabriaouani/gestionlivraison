@@ -68,6 +68,9 @@ class ChauffeurController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($chauffeur);
             $em->flush();
+            $this->addFlash('message','Chauffeur ajouter');
+
+
 
             return $this->redirectToRoute('chauffeur_show', array('id' => $chauffeur->getId()));
         }
@@ -120,6 +123,7 @@ class ChauffeurController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('message','Chauffeur modifier');
 
             return $this->redirectToRoute('chauffeur_index', array('id' => $chauffeur->getId()));
         }
@@ -144,7 +148,7 @@ class ChauffeurController extends Controller
         $post = $em->getRepository('AppBundle:chauffeur')->find($id);
         $em->remove($post);
         $em->flush();
-        $this->addFlash('message','Chauffeur deleted');
+        $this->addFlash('message','Chauffeur supprimer');
 
 
         return $this->redirectToRoute('chauffeur_index');

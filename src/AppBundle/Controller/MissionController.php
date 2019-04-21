@@ -70,6 +70,7 @@ class MissionController extends Controller
 
 
         $mission= new Mission();
+        $client= new Client();
         // $client = $em->getRepository('AppBundle:Client')->find($id);
 /*
          $originalclient= new ArrayCollection();
@@ -82,6 +83,15 @@ class MissionController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
+            foreach($mission->getIdclient() as $m){
+                $data = $m->getGooglemaps();
+                $m->setCity($data['city']);
+                $m->setAdresse($data['address']);
+                $m->setLat($data['lat']);
+                $m->setLng($data['lng']);
+            }
+            $client->setAdresse('adresse');
+
           /* foreach ($originalclient as $client){
                 dump($mission->getIdClient()->contains($client));
                 if($mission->getIdClient()->contains($client) === false){
@@ -96,9 +106,13 @@ class MissionController extends Controller
             } */
 
 
+
             $em->persist($mission);
             $em->flush();
+            $this->addFlash('message','Mission Ajouter');
+
             return $this->redirectToRoute('mission_index');
+
         }
 
 
@@ -134,9 +148,16 @@ class MissionController extends Controller
         $deleteForm = $this->createDeleteForm($mission);
         $editForm = $this->createForm('AppBundle\Form\MissionType', $mission);
         $editForm->handleRequest($request);
+        foreach($mission->getIdclient() as $m) {
 
+            $m->setGoogleMaps(array("lat" => $m->getLat(), "lng" => $m->getLng(),
+                "city" => $m->getCity(), "address" => $m->getAdresse()));
+            $m->setGoogleMaps(array("lat" => '"' . $m->getLat() . '"', "lng" => '"' . $m->getLng() . '"',
+                "city" => $m->getCity(), "adress" => $m->getAdresse()));
+        }
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('message','Mission modifier');
 
             return $this->redirectToRoute('mission_index');
         }
@@ -160,11 +181,28 @@ class MissionController extends Controller
         $post = $em->getRepository('AppBundle:Mission')->find($id);
         $em->remove($post);
         $em->flush();
-        $this->addFlash('message', 'Mission deleted');
+        $this->addFlash('message', 'Mission supprimer');
 
 
         return $this->redirectToRoute('mission_index');
 
+    }
+    /**
+     *
+     * @Route("/contacter", name="mission_contacter")
+     * @Method("GET")
+     */
+    public function contactAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $chaufs = $em->getRepository('AppBundle:Mission')->findAll();
+
+
+
+        return $this->render('mission/contacter-chauffeur.html.twig', array(
+
+            'chaufs' => $chaufs,
+        ));
     }
 
     /**
@@ -181,4 +219,5 @@ class MissionController extends Controller
             ->setMethod('DELETE')
             ->getForm();
     }
+
 }

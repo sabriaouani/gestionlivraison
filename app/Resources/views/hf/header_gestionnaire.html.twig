@@ -17,7 +17,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
-    <script src="{{ absolute_url(asset('Bundles/app/js/app.js')) }}"></script>
+    <script src="{{ absolute_url(asset('css/app.js')) }}"></script>
 
 </head>
 
@@ -31,7 +31,10 @@
         <div class="list-group list-group-flush">
             <a href="{{ path('mission_index') }}" class="list-group-item list-group-item-action bg-light">List mission</a>
             <a href="{{ path('produit_index') }}" class="list-group-item list-group-item-action bg-light">List produit</a>
-          <!--  <a href="{{ path('mission_new') }}" class="list-group-item list-group-item-action bg-light">Ajouter mission</a> -->
+            <a href="{{ path('client_feed') }}" class="list-group-item list-group-item-action bg-light">client feedback</a>
+            <a href="{{ path('chauf_feed') }}" class="list-group-item list-group-item-action bg-light">chauffeur feedback</a>
+            <!--<a href="{{ path('mission_contacter') }}" class="list-group-item list-group-item-action bg-light">Contacter chauffeur</a>
+           <a href="{{ path('mission_new') }}" class="list-group-item list-group-item-action bg-light">Ajouter mission</a> -->
 
         </div>
     </div>
@@ -65,4 +68,9 @@
             </div>
         </nav>
 
+        <div class="row" style="margin-left: 30px;">
+            {% for success_message in app.session.flashbag.get('message')%}
+                <div class="alert alert-success">{{ success_message }}</div>
 
+            {% endfor%}
+        </div>

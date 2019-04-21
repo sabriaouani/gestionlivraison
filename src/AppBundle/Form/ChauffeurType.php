@@ -19,26 +19,28 @@ class ChauffeurType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('cin', NumberType::Class, array('attr' => array('class' => 'form-control')),
+        $builder->add('cin', NumberType::Class,array(
+            'label' => 'Cin:' ,'label_attr' => array('class' => 'badge badge-secondary')), array('attr' => array('class' => 'form-control')),
             array('pattern' => '/^[0-9]*$/i'),
             array('required' => 'Please enter a username.'),
                 array('required' => true, 'min_length' => 1, 'max_length' => 8)
-
             )
-            ->add('nomprenom', TextType::Class, array('attr' => array('class' => 'form-control')),
+            ->add('nomprenom', TextType::Class,array(
+                'label' => 'Nom et Prenom:' ,'label_attr' => array('class' => 'badge badge-secondary')),
+                array('attr' => array('class' => 'form-control'))
+                ,
                 array('pattern' => '/^[A-z]*$/i',
                     'invalid' => 'champ doit etre une chaine de caractere',
-                ),array(
-                    'label' => 'Nom et Prenom:'))
-            ->add('tel',NumberType::Class,array('attr' => array('class' => 'form-control'))
+                ))
+            ->add('tel',NumberType::Class,array(
+                'label' => 'Télephone:' ,'label_attr' => array('class' => 'badge badge-secondary')),array('attr' => array('class' => 'form-control'))
             ,array('pattern' => '/^[0-9]*$/i',
                     'invalid' => 'champ doit etre entre 8 chiffre',
                    ),
-                array('required' => true, 'min_length' => 1, 'max_length' => 8),array(
-                    'label' => 'Télephone:')
+                array('required' => true, 'min_length' => 1, 'max_length' => 8)
             )
-            ->add('datenes', DateType::Class, [ 'widget' => 'single_text'],array(
-        'label' => 'Date de naissance:'))
+            ->add('datenes', DateType::Class, array(
+                'label' => 'Date debut:' ,'label_attr' => array('class' => 'badge badge-secondary')),[ 'widget' => 'single_text'])
 
         ->add('idGest',EntityType::Class, array('attr' => array('class' => 'form-control'),
         'class'=>'AppBundle\Entity\Gestionnaire',
@@ -47,8 +49,7 @@ class ChauffeurType extends AbstractType
            'multiple' =>false,
 
 
-            ),array(
-        'label' => 'Choisir son gestionnaire'));
+            ));
 
 
     }/**

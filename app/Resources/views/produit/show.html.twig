@@ -6,27 +6,28 @@
     }
 </style>
 <h1>Produit</h1>
-
+<br><br><br>
+<div class="col-md-9 container">
+    <div class="card">
+        <div class="card-body">
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
+                <th>Id    </th>
+                <td style="color: #2C009F">{{ produit.id }}</td>
             </tr>
             <tr>
-                <th>Nomproduit</th>
-                <td>{{ produit.nomProduit }}</td>
+                <th>Nom de produit    </th>
+                <td style="color: #2C009F">{{ produit.nomProduit }}</td>
             </tr>
             <tr>
-                <th>Typeproduit</th>
-                <td>{{ produit.idType }}</td>
+                <th>Type de produit    </th>
+                <td style="color: #2C009F">{{ produit.idType }}</td>
             </tr>
-            <tr>
-                <th>Nbproduit</th>
-                <td>{{ produit.nbProduit }}</td>
-            </tr>
+
         </tbody>
     </table>
+        </div></div></div>
 {{ include('hf/footer.html.twig') }}
 
 

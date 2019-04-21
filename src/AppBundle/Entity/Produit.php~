@@ -35,7 +35,6 @@ class Produit
      *
      * @ORM\Column(name="nbProduit", type="integer")
      */
-    private $nbProduit;
 
     /**
      * Many features have one product. This is the owning side.
@@ -139,6 +138,45 @@ class Produit
         $this->IdType = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * Add idClient
+     *
+     * @param \AppBundle\Entity\Client $idClient
+     *
+     * @return Produit
+     */
+    public function addIdClient(\AppBundle\Entity\Client $idClient)
+    {
+        $this->IdClient[] = $idClient;
 
+        return $this;
+    }
+
+    /**
+     * Remove idClient
+     *
+     * @param \AppBundle\Entity\Client $idClient
+     */
+    public function removeIdClient(\AppBundle\Entity\Client $idClient)
+    {
+        $this->IdClient->removeElement($idClient);
+    }
+
+    /**
+     * Get idClient
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdClient()
+    {
+        return $this->IdClient;
+    }
+
+    public function __toString()
+    {
+        return $this->nomProduit;
+    }
+
+ 
 
 }

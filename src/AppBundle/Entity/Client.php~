@@ -38,7 +38,6 @@ class Client
      *
      * @ORM\Column(name="adress", type="string", length=255)
      */
-    private $adress;
 
     /**
      * @var string
@@ -57,7 +56,7 @@ class Client
      * Many Users have Many Groups.
      * @ManyToMany(targetEntity="AppBundle\Entity\Produit")
      * @JoinTable(name="pro_client",
-     *      joinColumns={@JoinColumn(name="id_client", referencedColumnName="id")},
+     *      joinColumns={@JoinColumn(name="id_client", referencedColumnName="id",onDelete="CASCADE")},
      *      inverseJoinColumns={@JoinColumn(name="id_produit", referencedColumnName="id")}
      *      )
      */
@@ -66,10 +65,68 @@ class Client
     /**
      * Many features have one product. This is the owning side.
      * @ManyToOne(targetEntity="AppBundle\Entity\Mission", inversedBy="IdClient")
-     * @JoinColumn(name="IdMission", referencedColumnName="id")
+     * @JoinColumn(name="IdMission", referencedColumnName="id",onDelete="CASCADE")
      */
     private $IdMission;
+    protected $googleMaps;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     */
+    private $city;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="longitude", type="float", nullable=true)
+     */
+    private $lat;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="latitude", type="float", nullable=true)
+     */
+    private $lng;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="rate", type="float", nullable=true)
+     */
+    private $rate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="string", length=255)
+     */
+    private $comment;
+
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleMaps()
+    {
+        return $this->googleMaps;
+    }
+
+    /**
+     * @param mixed $googleMaps
+     */
+    public function setGoogleMaps($googleMaps)
+    {
+        $this->googleMaps = $googleMaps;
+    }
 
     /**
      * Get id
@@ -105,29 +162,7 @@ class Client
         return $this->nom;
     }
 
-    /**
-     * Set adress
-     *
-     * @param string $adress
-     *
-     * @return Client
-     */
-    public function setAdress($adress)
-    {
-        $this->adress = $adress;
 
-        return $this;
-    }
-
-    /**
-     * Get adress
-     *
-     * @return string
-     */
-    public function getAdress()
-    {
-        return $this->adress;
-    }
 
     /**
      * Set tel
@@ -225,5 +260,186 @@ class Client
     public function getIdMission()
     {
         return $this->IdMission;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->IdProduit = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add idProduit
+     *
+     * @param \AppBundle\Entity\Produit $idProduit
+     *
+     * @return Client
+     */
+    public function addIdProduit(\AppBundle\Entity\Produit $idProduit)
+    {
+        $this->IdProduit[] = $idProduit;
+
+        return $this;
+    }
+
+    /**
+     * Remove idProduit
+     *
+     * @param \AppBundle\Entity\Produit $idProduit
+     */
+    public function removeIdProduit(\AppBundle\Entity\Produit $idProduit)
+    {
+        $this->IdProduit->removeElement($idProduit);
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Client
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     *
+     * @return Client
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set lat
+     *
+     * @param float $lat
+     *
+     * @return Client
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return float
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set lng
+     *
+     * @param float $lng
+     *
+     * @return Client
+     */
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    /**
+     * Get lng
+     *
+     * @return float
+     */
+    public function getLng()
+    {
+        return $this->lng;
+    }
+
+    /**
+     * Set rate
+     *
+     * @param float $rate
+     *
+     * @return Client
+     */
+    public function setRate($rate)
+    {
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    /**
+     * Get rate
+     *
+     * @return float
+     */
+    public function getRate()
+    {
+        return $this->rate;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return Client
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 }

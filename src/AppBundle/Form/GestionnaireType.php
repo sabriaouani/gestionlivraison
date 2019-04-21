@@ -17,19 +17,19 @@ class GestionnaireType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('cin',TextType::Class,array(
-            'label' => 'Cin:'), array('attr' => array('class' => 'form-control')),
+            'label' => 'Cin:','label_attr' => array('class' => 'badge badge-secondary')), array('attr' => array('class' => 'form-control')),
             array('pattern' => '/^[1-9]*$/i'),
             array('invalid' => 'il doit etre entier de 8 chiffre'),
             array('required' => true, 'min_length' => 1, 'max_length' => 8))
             ->add('nomprenom',TextType::Class,array(
-                'label' => 'Nom et Prenom:'), array('attr' => array('class' => 'form-control')),
+                'label' => 'Nom et Prenom:','label_attr' => array('class' => 'badge badge-secondary')), array('attr' => array('class' => 'form-control')),
                 array('pattern' => '/^[A-z0-9]*$/i'),
                 array('invalid' => 'ne contien pas chiffre'),
                 array('required' => true, 'min_length' => 1, 'max_length' => 8))
             ->add('email',EmailType::Class,array(
-                'label' => 'Email:'), array('attr' => array('class' => 'form-control')))
+                'label' => 'Email:','label_attr' => array('class' => 'badge badge-secondary')), array('attr' => array('class' => 'form-control')))
             ->add('adress',TextType::Class,array(
-                'label' => 'Adress:'), array('attr' => array('class' => 'form-control')),
+                'label' => 'Adresse:','label_attr' => array('class' => 'badge badge-secondary')), array('attr' => array('class' => 'form-control')),
                 array('pattern' => '/^[A-z]*$/i'),
                 array('invalid' => 'il doit etre une chaine de caractere'),
                 array('required' => true, 'min_length' => 1, 'max_length' => 50)

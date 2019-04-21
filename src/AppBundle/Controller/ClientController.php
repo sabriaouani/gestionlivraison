@@ -40,10 +40,18 @@ class ClientController extends Controller
     public function newAction(Request $request)
     {
         $client = new Client();
-        $form1 = $this->createForm('AppBundle\Form\ClientType', $client);
-        $form1->handleRequest($request);
+        $form = $this->createForm('AppBundle\Form\ClientType', $client);
+        $form->handleRequest($request);
 
-        if ($form1->isSubmitted() && $form1->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            $lat = $client->getGoogleMaps()['lat'];
+            $lng = $client->getGoogleMaps()['lng'];
+            $city = $client->getGoogleMaps()['city'];
+            $adresse = $client->getGoogleMaps()['adresse'];
+            $client->setAdresse($adresse);
+            $client->setLat($lat);
+            $client->setLng($lng);
+            $client->setCity($city);
             $em = $this->getDoctrine()->getManager();
             $em->persist($client);
             $em->flush();
@@ -53,9 +61,10 @@ class ClientController extends Controller
 
         return $this->render('mission/new.html.twig', array(
             'client' => $client,
-            'form1' => $form1->createView(),
+            'form' => $form->createView(),
         ));
     }
+
 
     /**
      * Finds and displays a client entity.
@@ -82,7 +91,12 @@ class ClientController extends Controller
     public function editAction(Request $request, Client $client)
     {
         $deleteForm = $this->createDeleteForm($client);
+        $client->setGoogleMaps(array("lat"=>$client->getLat(),"lng"=>$client->getLng(),
+            "city"=>$client->getCity(),"address"=>$client->getAdresse()));
         $editForm = $this->createForm('AppBundle\Form\ClientType', $client);
+
+        $client->setGoogleMaps(array("lat"=>'"'.$client->getLat().'"',"lng"=>'"'.$client->
+            getLng().'"',"city"=>$client->getCity(),"address"=>$client->getAdresse()));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

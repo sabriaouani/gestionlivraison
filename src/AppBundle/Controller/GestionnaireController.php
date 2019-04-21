@@ -113,7 +113,7 @@ class GestionnaireController extends Controller
         $post = $em->getRepository('AppBundle:Gestionnaire')->find($id);
         $em->remove($post);
         $em->flush();
-        $this->addFlash('message','Gestionnaire deleted');
+        $this->addFlash('message','Gestionnaire supprimer');
 
         return $this->redirectToRoute('gestionnaire_index');
     }

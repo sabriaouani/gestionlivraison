@@ -29,9 +29,9 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">Gestion Livraison </div>
         <div class="list-group list-group-flush">
-            <a href="{{ path('dashboard') }}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="{{ path('chauffeur_index') }}" class="list-group-item list-group-item-action bg-light">List Chauffeur</a>
-            <a href="{{ path('gestionnaire_index') }}" class="list-group-item list-group-item-action bg-light">List gestionnaire</a>
+            <a href="{{ path('mission_dash') }}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+            <a href="{{ path('chauffeur_index') }}" class="list-group-item list-group-item-action bg-light">Liste Chauffeur</a>
+            <a href="{{ path('gestionnaire_index') }}" class="list-group-item list-group-item-action bg-light">Liste gestionnaire</a>
 
         </div>
     </div>
@@ -64,8 +64,8 @@
                 </ul>
             </div>
         </nav>
-        <div></div>
-        <div class="row">
+
+        <div class="row" style="margin-left: 30px;">
             {% for success_message in app.session.flashbag.get('message')%}
                 <div class="alert alert-success">{{ success_message }}</div>
 

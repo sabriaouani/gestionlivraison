@@ -38,7 +38,6 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_theme: 'bootstrap_3_layout.html.twig'
-
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -79,4 +78,5 @@ fos_user:
     from_email:
         address:        sabriaouani@gmail.com
         sender_name:    admin
-# Nelmio CORS Configuration
+google_maps:
+    api_key: 'AIzaSyAdBaE43pmIIcV09f_Nhg4rvB70g3F6-9w'

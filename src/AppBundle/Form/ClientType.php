@@ -6,6 +6,7 @@ use mysql_xdevapi\Collection;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use CyberJaw\GoogleMapsBundle\Form\Type\GoogleMapsType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,20 +22,21 @@ class ClientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nom',TextType::Class,array(
-            'label' => 'Nom Client:'))
-            ->add('adress',TextType::Class)
-            ->add('tel',TextType::Class)
-            ->add('prix',NumberType::Class)
+            'label' => 'Nom Client:','label_attr' => array('class' => 'badge badge-secondary')))
+            ->add('googleMaps', GoogleMapsType::class,array(
+                'label' => 'Google maps:','label_attr' => array('class' => 'badge badge-secondary')))
+            ->add('tel',TextType::Class,array(
+                'label' => 'Numero téléphone:','label_attr' => array('class' => 'badge badge-secondary')))
+            ->add('prix',NumberType::Class,array(
+                'label' => 'Prix:','label_attr' => array('class' => 'badge badge-secondary')))
             ->add('IdProduit',EntityType::class,array(
                 'attr'=> array('class'=>'js-example-basic-multiple'),
                 'class'=>'AppBundle\Entity\Produit',
-
                 'choice_label'=>'NomProduit',
                 'expanded' =>false,
                 'multiple' =>true,
 
             ));
-
 
 
     }/**

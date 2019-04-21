@@ -7,13 +7,15 @@
 </style>
 <div class="container">
 
-<h1>Gestionnaire edit</h1>
+<h1>Modifier gestionnaire</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-<input type="submit" value="Edit" class="btn btn-primary"/>
+<input type="submit" value="Modifier" class="btn btn-primary"/>
 
     {{ form_end(edit_form) }}
+    <a href="{{ path('gestionnaire_index') }}" class="btn btn-primary btn-sm">Retour</a>
+
 </div>
 
 {{ include('hf/footer.html.twig') }}
