@@ -36,9 +36,16 @@ class msg_ch
     private $msg;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="nomChauf", type="string", length=255)
+     */
+    private $nomchauf;
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datenes", type="date")
+     * @ORM\Column(name="date_m", type="date")
      */
     private $date_m;
 
@@ -99,5 +106,29 @@ class msg_ch
     public function getMsg()
     {
         return $this->msg;
+    }
+
+    /**
+     * Set dateM
+     *
+     * @param \DateTime $dateM
+     *
+     * @return msg_ch
+     */
+    public function setDateM($dateM)
+    {
+        $this->date_m = $dateM;
+
+        return $this;
+    }
+
+    /**
+     * Get dateM
+     *
+     * @return \DateTime
+     */
+    public function getDateM()
+    {
+        return $this->date_m;
     }
 }

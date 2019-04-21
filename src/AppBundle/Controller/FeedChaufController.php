@@ -32,7 +32,14 @@ class FeedChaufController extends Controller
 
         $chaufs = $query->execute();
         //$chaufs = $em->getRepository('AppBundle:msg_ch')->findAll();
-        dump($chaufs);die;
+        /** @var msg_ch $c */
+        foreach ($chaufs as $c){
+
+            $chauf = $em->getRepository('AppBundle:chauffeur')->find($c->getIdCh());
+            $c->setNomchauf($chauf->getNomprenom());
+            $em->persist($c);
+            $em->flush();
+        }
         return $this->render('feedback/feedChauf.html.twig', array(
             'chaufs' => $chaufs,
         ));

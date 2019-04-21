@@ -17,11 +17,14 @@ $(document).ready(function () {
 
     })
 
+        $('.js-example-basic-multiple').select2();
+
 });
 function addNewForm() {
     var prototype = $collectionHolder.data('prototype');
     var index= $collectionHolder.data('index');
     var newForm= prototype;
+
     newForm= newForm.replace(/__name__/g, index);
     $collectionHolder.data('index', index+1);
     var $panel = $('<div class="panel panel-warning"><div class="panel-heading"></div></div>');
@@ -29,7 +32,9 @@ function addNewForm() {
     $panel.append($panelBody);
     addRemoveButton($panel);
     $addNewItem.before($panel);
-
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
 }
 
 
