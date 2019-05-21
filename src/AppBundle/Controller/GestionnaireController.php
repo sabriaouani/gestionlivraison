@@ -25,8 +25,13 @@ class GestionnaireController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $gestionnaires = $em->getRepository('AppBundle:Gestionnaire')->findAll();
+        $query = $em->createQuery(
+            'SELECT g
+            FROM AppBundle:Gestionnaire g
+            where g.status= :status')->setParameter('status',false);
 
+
+        $gestionnaires = $query->execute();
         return $this->render('gestionnaire/index.html.twig', array(
             'gestionnaires' => $gestionnaires,
 
@@ -47,6 +52,8 @@ class GestionnaireController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $gestionnaire->setStatus("false");
+
             $em->persist($gestionnaire);
             $em->flush();
 
@@ -105,13 +112,18 @@ class GestionnaireController extends Controller
     /**
      * Deletes a gestionnaire entity.
      *
-     * @Route("/delete/{id}", name="gestionnaire_delete")
+     * @Route("/delete/gestionnaire", name="gestionnaire_delete")
      */
-    public function deleteAction($id)
+    public function deleteAction(Request $request)
     {
+      $id = $request->query->get('id');
         $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('AppBundle:Gestionnaire')->find($id);
-        $em->remove($post);
+        $gestionnaire = $em->getRepository('AppBundle:Gestionnaire')->find($id);
+        //$em->remove($post);
+
+        $gestionnaire->setStatus(true);
+        $em->persist($gestionnaire);
+
         $em->flush();
         $this->addFlash('message','Gestionnaire supprimer');
 

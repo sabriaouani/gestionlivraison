@@ -27,8 +27,13 @@ class ProduitController extends Controller
 
         //$prod = $em->getRepository('AppBundle:Produit')->findAll();
 
-        $produits = $em->getRepository('AppBundle:Produit')->findAll();
-       /* if($request->isMethod('POST')){
+        $query = $em->createQuery(
+            'SELECT p
+            FROM AppBundle:Produit p
+            where p.status= :status')->setParameter('status',false);
+
+
+        $produits = $query->execute();       /* if($request->isMethod('POST')){
             $nom=$request->get('nomProduit');
             $produits=$em->getRepository('AppBundle:Produit')->findBy(array('nomProduit'=>$nom));
         }
@@ -65,6 +70,7 @@ class ProduitController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $produit->setStatus("false");
             $em->persist($produit);
             $em->flush();
             $this->addFlash('message','Produit Ajouter');
@@ -123,14 +129,19 @@ class ProduitController extends Controller
     /**
      * Deletes a produit entity.
      *
-     * @Route("/delete/{id}", name="produit_delete")
+     * @Route("/delete/produit", name="produit_delete")
      * @Method("DELETE")
      */
-    public function deleteAction($id)
+    public function deleteAction(Request $request)
     {
+        $id = $request->query->get('id');
         $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('AppBundle:Produit')->find($id);
-        $em->remove($post);
+        $produit = $em->getRepository('AppBundle:Produit')->find($id);
+        //$em->remove($post);
+
+        $produit->setStatus(true);
+        $em->persist($produit);
+
         $em->flush();
         $this->addFlash('message','Produit supprimer');
 

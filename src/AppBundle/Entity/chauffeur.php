@@ -30,6 +30,10 @@ class chauffeur
      * @var string
      *
      * @ORM\Column(name="nomprenom", type="string", length=255)
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$"
+     * )
      */
     private $nomprenom;
 

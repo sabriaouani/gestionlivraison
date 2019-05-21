@@ -137,13 +137,16 @@ class ChauffeurController extends Controller
     /**
      * Deletes a chauffeur entity.
      *
-     * @Route("/{id}/delete", name="chauffeur_delete")
+     * @Route("/delete/chauffeur", name="chauffeur_delete")
      */
-    public function deleteAction(Request $request, chauffeur $chauffeur)
+    public function deleteAction(Request $request)
     {
+        $id = $request->query->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $chauffeur = $em->getRepository('AppBundle:chauffeur')->find($id);
 
 
-            $chauffeur->setStatus(true);
+        $chauffeur->setStatus(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($chauffeur);
             $em->flush();

@@ -43,7 +43,28 @@ class Produit
      */
     private $IdType;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255, nullable=true)
+     */
+    private $status;
 
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
 
     /**
      * Get id
