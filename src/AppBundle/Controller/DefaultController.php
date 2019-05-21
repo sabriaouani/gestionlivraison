@@ -28,7 +28,7 @@ class DefaultController extends Controller
     {
         $authCheker = $this->container->get('security.authorization_checker');
         if($authCheker->isGranted('ROLE_ADMIN')){
-            return $this->render('chauffeur/dashboard.html.twig');
+            return $this->redirectToRoute('mission_dash');
         }
         else if($authCheker->isGranted('ROLE_USER')){
             return $this->render('mission/gest.html.twig');

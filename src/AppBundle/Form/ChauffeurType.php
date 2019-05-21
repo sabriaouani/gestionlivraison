@@ -20,24 +20,17 @@ class ChauffeurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('cin', NumberType::Class,array(
-            'label' => 'Cin:' ,'label_attr' => array('class' => 'badge badge-secondary')), array('attr' => array('class' => 'form-control')),
-            array('pattern' => '/^[0-9]*$/i'),
-            array('required' => 'Please enter a username.'),
-                array('required' => true, 'min_length' => 1, 'max_length' => 8)
+            'label' => 'Cin:' ,'label_attr' => array('class' => 'badge badge-secondary')), array('attr' => array('class' => 'form-control'))
+
             )
             ->add('nomprenom', TextType::Class,array(
                 'label' => 'Nom et Prenom:' ,'label_attr' => array('class' => 'badge badge-secondary')),
                 array('attr' => array('class' => 'form-control'))
-                ,
-                array('pattern' => '/^[A-z]*$/i',
-                    'invalid' => 'champ doit etre une chaine de caractere',
-                ))
+               )
             ->add('tel',NumberType::Class,array(
                 'label' => 'Télephone:' ,'label_attr' => array('class' => 'badge badge-secondary')),array('attr' => array('class' => 'form-control'))
-            ,array('pattern' => '/^[0-9]*$/i',
-                    'invalid' => 'champ doit etre entre 8 chiffre',
-                   ),
-                array('required' => true, 'min_length' => 1, 'max_length' => 8)
+
+
             )
             ->add('datenes', DateType::Class, array(
                 'label' => 'Date debut:' ,'label_attr' => array('class' => 'badge badge-secondary')),[ 'widget' => 'single_text'])

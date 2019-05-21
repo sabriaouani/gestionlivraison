@@ -5,12 +5,13 @@
         background-color: #cccccc;
     }
 </style>
-<div class="container">
+<div class="col-sm-8 col-sm-offset-2">
 
     <h1>Modification de produit</h1>
 {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
 <input type="submit" value="Modifier" class="btn btn-primary"/>
+    <a href="{{ path('produit_index') }}" class="btn btn-primary ">Retour</a>
 
 {{ form_end(edit_form) }}
 </div>

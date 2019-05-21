@@ -1,6 +1,4 @@
-
-
-var  $collectionHolder;
+var $collectionHolder;
 
 var $addNewItem = $('<a href="#" class="btn btn-info">ajouter client</a>');
 $(document).ready(function () {
@@ -15,32 +13,32 @@ $(document).ready(function () {
         e.preventDefault();
         addNewForm();
 
-    })
+    });
 
-        $('.js-example-basic-multiple').select2();
+    $('.js-example-basic-multiple').select2();
 
 });
+
 function addNewForm() {
     var prototype = $collectionHolder.data('prototype');
-    var index= $collectionHolder.data('index');
-    var newForm= prototype;
+    var index = $collectionHolder.data('index');
+    var newForm = prototype;
 
-    newForm= newForm.replace(/__name__/g, index);
-    $collectionHolder.data('index', index+1);
+    newForm = newForm.replace(/__name__/g, index);
+    $collectionHolder.data('index', index + 1);
     var $panel = $('<div class="panel panel-warning"><div class="panel-heading"></div></div>');
     var $panelBody = $('<div class="panel-body"></div>').append(newForm);
     $panel.append($panelBody);
     addRemoveButton($panel);
     $addNewItem.before($panel);
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.js-example-basic-multiple').select2();
     });
 }
 
 
-
 function addRemoveButton($panel) {
-    var  $removeButton = $('<a href="#" class="btn btn-danger">annuler</a>');
+    var $removeButton = $('<a href="#" class="btn btn-danger">annuler</a>');
     var $panelFooter = $('<div class="panel-footer"></div>').append($removeButton);
     $removeButton.click(function (e) {
         e.preventDefault();
@@ -50,6 +48,7 @@ function addRemoveButton($panel) {
     });
     $panel.append($panelFooter);
 }
-$(document).ready(function() {
+
+$(document).ready(function () {
     $('.js-example-basic-multiple').select2();
 });

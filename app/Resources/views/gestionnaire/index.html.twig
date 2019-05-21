@@ -5,6 +5,12 @@
         background-color: #cccccc;
     }
 </style>
+<br>
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>
 <div class="container">
     <div class="row">
         <a href="{{ path('gestionnaire_new') }}" class="btn btn-primary" style="position: absolute; right: 10px;">Ajouter
@@ -34,9 +40,8 @@
                 <td>
                     <a href="{{ path('gestionnaire_show',{'id':gestionnaire.id}) }}" class="btn btn-primary btn-sm">Afficher</a>
                     <a href="{{ path('gestionnaire_edit',{'id':gestionnaire.id}) }}" class="btn btn-light">Modifier</a>
-                    <a class="btn btn-danger btn-sm"
-                       data-toggle="modal" data-target="#{{'id' ~gestionnaire.id}}">Supprimer</a>
-                    <div class="modal fade" id="{{'id' ~gestionnaire.id}}" tabindex="-1" role="dialog"
+                    <a href="{{ path('gestionnaire_delete',{'id':gestionnaire.id})}}" class="btn btn-danger btn-sm" >Supprimer</a>
+                   <!-- <div class="modal fade" id="{{'id' ~gestionnaire.id}}" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -58,6 +63,7 @@
                             </div>
                         </div>
                     </div>
+data-toggle="modal" data-target="#{{'id' ~gestionnaire.id}}"-->
 
                 </td>
             </tr>

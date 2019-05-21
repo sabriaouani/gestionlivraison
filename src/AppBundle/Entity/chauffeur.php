@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * chauffeur
@@ -35,6 +37,7 @@ class chauffeur
      * @var int
      *
      * @ORM\Column(name="cin", type="integer")
+     * @Assert\Length(min = "7", max = "8", maxMessage="Cin doit etre numerique de taille 8")
      */
     private $cin;
 
@@ -42,6 +45,7 @@ class chauffeur
      * @var int
      *
      * @ORM\Column(name="tel", type="integer")
+     * @Assert\Length(min = "8", max = "8", maxMessage="Cin doit etre numerique de taille 8")
      */
     private $tel;
 
@@ -66,8 +70,12 @@ class chauffeur
      */
     private $IdMission;
 
-
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255, nullable=true)
+     */
+    private $status;
     /**
      * Get id
      *
@@ -273,5 +281,29 @@ class chauffeur
     public function getDatenes()
     {
         return $this->datenes;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return chauffeur
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

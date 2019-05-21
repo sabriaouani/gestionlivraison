@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\OneToMany;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 
@@ -30,6 +32,7 @@ class Gestionnaire
      * @var string
      *
      * @ORM\Column(name="cin", type="string", length=255)
+     * @Assert\Length(min = "8", max = "8", maxMessage="Cin doit etre numerique de taille 8")
      */
     private $cin;
 
@@ -37,6 +40,10 @@ class Gestionnaire
      * @var string
      *
      * @ORM\Column(name="nomprenom", type="string", length=255)
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$"
+     * )
      */
     private $nomprenom;
 

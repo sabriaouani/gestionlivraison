@@ -30,7 +30,14 @@ class ChauffeurController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $chauffeurs = $em->getRepository('AppBundle:chauffeur')->findAll();
+
+        $query = $em->createQuery(
+            'SELECT c
+            FROM AppBundle:chauffeur c
+            where c.status= :status')->setParameter('status',false);
+
+
+        $chauffeurs = $query->execute();
 
         $gestionnairess = $em->getRepository('AppBundle:Gestionnaire')->findAll();
         return $this->render('chauffeur/index.html.twig', array(
@@ -39,19 +46,7 @@ class ChauffeurController extends Controller
 
         ));
     }
-    /**
-     * Creates a new chauffeur entity.
-     *
-     * @Route("/dashboard", name="dashboard")
-     * @Method({"GET", "POST"})
-     */
-    public function DashboardAction()
-    {
 
-
-        return $this->render('chauffeur/dashboard.html.twig'
-        );
-    }
     /**
      * Creates a new chauffeur entity.
      *
@@ -66,6 +61,8 @@ class ChauffeurController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $chauffeur ->setStatus("false");
             $em->persist($chauffeur);
             $em->flush();
             $this->addFlash('message','Chauffeur ajouter');
@@ -140,18 +137,26 @@ class ChauffeurController extends Controller
     /**
      * Deletes a chauffeur entity.
      *
-     * @Route("/delete/{id}", name="chauffeur_delete")
+     * @Route("/{id}/delete", name="chauffeur_delete")
      */
-    public function deleteAction($id)
+    public function deleteAction(Request $request, chauffeur $chauffeur)
     {
-        $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('AppBundle:chauffeur')->find($id);
-        $em->remove($post);
-        $em->flush();
-        $this->addFlash('message','Chauffeur supprimer');
 
 
-        return $this->redirectToRoute('chauffeur_index');
+            $chauffeur->setStatus(true);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($chauffeur);
+            $em->flush();
+            $this->addFlash('message', 'Chauffeur supprimer');
+
+
+            return $this->redirectToRoute('chauffeur_index');
+
+
+        //}
+
+      //  return $this->render(':chauffeur:index.html.twig');
+
 
     }
 

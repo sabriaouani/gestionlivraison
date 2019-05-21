@@ -1,0 +1,59 @@
+{{ include('hf/header_gestionnaire.html.twig') }}
+<br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    });
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+
+</script>
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<style>
+    .col-1-box .glyphicon.glyphicon-ok {
+        border: 1px solid black;
+    }</style>
+
+<div class="container">
+<div class="row">
+    <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+        <tr>
+            <th>Nom client</th>
+            <th>Nom produit</th>
+            <th>état produit</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for exist in exists %}
+            <tr>
+                <th scope="row">{{ exist.nomclient }}</th>
+                <td>{{ exist.nomproduit }}</td>
+                {% if exist.exist != 0 %}
+                    <td>
+                        le produit est distribuer
+                       </td>
+                {% else %}
+                    <td>
+                        le produit n'est pas distribuer
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    </div>    &emsp;
+</div>
+
+
+
+{{ include('hf/footer.html.twig') }}

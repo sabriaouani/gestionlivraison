@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mission;
 use AppBundle\Entity\Client;
+use AppBundle\Entity\ProClient;
 use AppBundle\Entity\Produit;
 use AppBundle\Form\MissionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -46,6 +47,11 @@ class MissionController extends Controller
         );
 
         $missions = $query->execute();
+       /* $res  = $this->getDoctrine()->getRepository(ProClient::class)->findAll();
+        $element = $res[0];
+        $element->setExist(20);
+        $em->persist($element);
+        $em->flush(); */
         return $this->render('mission/index.html.twig', array(
 
             'missions' => $missions,
@@ -87,8 +93,8 @@ class MissionController extends Controller
                 $data = $m->getGooglemaps();
                 $m->setCity($data['city']);
                 $m->setAdresse($data['address']);
-                $m->setLat($data['lat']);
-                $m->setLng($data['lng']);
+                $m->setLat($data['lng']);
+                $m->setLng($data['lat']);
             }
             $client->setAdresse('adresse');
 
@@ -152,7 +158,7 @@ class MissionController extends Controller
 
             $m->setGoogleMaps(array("lat" => $m->getLat(), "lng" => $m->getLng(),
                 "city" => $m->getCity(), "address" => $m->getAdresse()));
-            $m->setGoogleMaps(array("lat" => '"' . $m->getLat() . '"', "lng" => '"' . $m->getLng() . '"',
+            $m->setGoogleMaps(array("lat" => '"' . $m->getLng() . '"', "lng" => '"' . $m->getLat() . '"',
                 "city" => $m->getCity(), "adress" => $m->getAdresse()));
         }
         if ($editForm->isSubmitted() && $editForm->isValid()) {

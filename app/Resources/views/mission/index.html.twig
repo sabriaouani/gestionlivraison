@@ -14,7 +14,7 @@
 <div class="container">
 <br>
 
-    <a href="{{ path('mission_new') }}" class="btn btn-primary">Crée mission</a>
+    <a href="{{ path('mission_new') }}" class="btn btn-primary">Ajouter mission</a>
     {% set date = "" %}
     {% for m in missions %}
         {% if date =="" %}
@@ -47,7 +47,8 @@
                                 <td> {{ c.prix }}</td>
                                 <td>{% for p in c.IdProduit %}
                                         {{ p.nomProduit }}
-                                    {% endfor %}</td>
+                                <br>
+                                    {% endfor %}<br></td>
                                 <td>
                                 <td>
                                     <a href="{{ path('client_edit', { 'id': c.id }) }}" class="btn btn-warning">Modifier</a>
@@ -98,7 +99,7 @@
                                     <td> {{ c.prix }}</td>
                                     <td>{% for p in c.IdProduit %}
                                             {{ p.nomProduit }} <br>
-                                        {% endfor %}</td>
+                                        {% endfor %} <br></td>
                                     <td>
                                         <a href="{{ path('client_edit', { 'id': c.id }) }}" class="btn btn-warning">Modifier</a>
                                         <a href="{{ path('client_delete', { 'id': c.id }) }}" class="btn btn-warning">Supprimer</a>
@@ -145,8 +146,9 @@
                                     <td> {{ c.tel }}</td>
                                     <td> {{ c.prix }}</td>
                                     <td>{% for p in c.IdProduit %}
-                                            {{ p.nomProduit }} <br>
-                                        {% endfor %}</td>
+                                            {{ p.nomProduit }}<br>
+                                        {% endfor %}
+                                        </td>
                                     <td>
                                         <a href="{{ path('client_edit', { 'id': c.id }) }}" class="btn btn-warning">Modifier</a>
                                         <a href="{{ path('client_delete', { 'id': c.id }) }}" class="btn btn-warning">Supprimer</a>

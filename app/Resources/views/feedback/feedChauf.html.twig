@@ -2,10 +2,10 @@
 <br>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container">
-<div class="row">
 {% for chauf in chaufs %}
 
-    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+
+    <div class="card text-white bg-dark mb-3" style="max-width: 30rem;">
         <div class="card-header">{{ chauf.nomchauf }}</div>
 
         <div class="card-body">
@@ -14,9 +14,9 @@
             <h5 class="card-title">{{ chauf.msg }}</h5>
         </div>
     </div>
-    &emsp;    &emsp;
+
 {% endfor %}
     </div>    &emsp;
-</div>
+
 
 {{ include('hf/footer.html.twig') }}

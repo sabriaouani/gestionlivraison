@@ -29,8 +29,8 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">Gestion Livraison </div>
         <div class="list-group list-group-flush">
-            <a href="{{ path('mission_index') }}" class="list-group-item list-group-item-action bg-light">List mission</a>
-            <a href="{{ path('produit_index') }}" class="list-group-item list-group-item-action bg-light">List produit</a>
+            <a href="{{ path('mission_index') }}" class="list-group-item list-group-item-action bg-light">Liste mission</a>
+            <a href="{{ path('produit_index') }}" class="list-group-item list-group-item-action bg-light">Liste produit</a>
             <a href="{{ path('client_feed') }}" class="list-group-item list-group-item-action bg-light">client feedback</a>
             <a href="{{ path('chauf_feed') }}" class="list-group-item list-group-item-action bg-light">chauffeur feedback</a>
             <!--<a href="{{ path('mission_contacter') }}" class="list-group-item list-group-item-action bg-light">Contacter chauffeur</a>
@@ -55,13 +55,22 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="{{ path('exist_produit') }}" >
+                            <i class="mdi mdi-alarm-on">notification</i>
+                        </a>
+
+
+                    </li>
+
+
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             aminbelaid
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a href="{{ path('fos_user_security_logout') }}" class="nav-link"  >Deconnecter</a>
+                            <a href="{{ path('fos_user_security_logout') }}" class="nav-link"  >Déconnexion</a>
                         </div>
                     </li>
                 </ul>

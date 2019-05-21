@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Client
@@ -37,12 +39,17 @@ class Client
      * @var string
      *
      * @ORM\Column(name="adress", type="string", length=255)
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$"
+     * )
      */
 
     /**
      * @var string
      *
      * @ORM\Column(name="tel", type="string", length=255)
+     * @Assert\Length(min = "8", max = "8", maxMessage="Cin doit etre numerique de taille 8")
      */
     private $tel;
     /**
